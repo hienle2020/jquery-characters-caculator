@@ -1,0 +1,26 @@
+{
+  "name": "jquery-characters-calculator",
+  "version": "1.0.0",
+  "description": "characters calculator",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/hienle2020/jquery-characters-caculator.git"
+  },
+  "keywords": [
+    "calculator",
+    "counter"
+  ],
+  "author": "hienle",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/hienle2020/jquery-characters-caculator/issues"
+  },
+  "homepage": "https://github.com/hienle2020/jquery-characters-caculator#readme",
+  "dependencies": {
+    "jquery": "^3.6.0"
+  }
+}
