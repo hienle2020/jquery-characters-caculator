@@ -57,7 +57,7 @@ npm install jquery-characters-caculator
 ```
 
 # Features
-A plugin to show limits the number of characters in the textbox and displays how many characters are left to be entered while typing.
+A plugin to show the number while typing or paste.
 <ul>
   <li>Count spaces as character or not</li>
   <li>Limit character</li>
