@@ -21,9 +21,9 @@
 				textLength = text.replace(/\s/g, '').length;
 				htmlResult = `<span>${textLength}/${limit}</span>`;
 				if (textLength > limit) {
-					let position = 500;
+					let position = limit;
 					let subStrText = text.substr(0, position)
-					while (subStrText.replace(/\s/g, '').length < 500) {
+					while (subStrText.replace(/\s/g, '').length < limit) {
 						subStrText = text.substr(0, position++);
 					}
 					element.val(subStrText);
@@ -36,7 +36,7 @@
 			} else if (limit > 0) {
 				htmlResult = `<span>${textLength}/${limit}</span>`;
 				if (textLength > limit) {
-					element.val(text.substr(0, 500));
+					element.val(text.substr(0, limit));
 					htmlResult = `<span>${limit}/${limit}</span>`;
 				}
 			} else {
