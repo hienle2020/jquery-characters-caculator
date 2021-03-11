@@ -21,8 +21,12 @@
 				textLength = text.replace(/\s/g, '').length;
 				htmlResult = `<span>${textLength}/${limit}</span>`;
 				if (textLength > limit) {
-					var spaces = text.match(/\s/g) ? text.match(/\s/g).length : 0;
-					element.val(text.substr(0, 500 + spaces));
+					let position = 500;
+					let subStrText = text.substr(0, position)
+					while (subStrText.replace(/\s/g, '').length < 500) {
+						subStrText = text.substr(0, position++);
+					}
+					element.val(subStrText);
 					htmlResult = `<span>${limit}/${limit}</span>`;
 				}
 			} else if (whitespaces) {
