@@ -1,25 +1,24 @@
 (function ($) {
 	$.calculate = function (element, target, options) {
-		var defaults = {
+		options = $.extend({
 			limit: 0,
 			whitespaces: true,
-		};
-		var options = $.extend(defaults, options);
+		}, options);
 		var $element = $(element);
 		if (!$element.is('input,select,textarea')) {
 			throw new Error(`Invalid element type: ${element.tagName}!`);
 		}
-		if (!isNaN(target) || target === undefined) {
-			throw new Error(`This field is not true`);
+		if (target === undefined) {
+			throw new Error("This element doesn't exist");
 		}
-		$element.on('paste keyup change', function () {
-			setTimeout(function () { CharCounter($element, target, options.limit, options.whitespaces) }, 10);
+		$element.on('paste keyup keypress change', function () {
+			CharCounter($element, target, options.limit, options.whitespaces)
 		});
 		CharCounter = function (element, target, limit, whitespaces) {
-			let htmlResult, text = element.val(), textLength = text.length;
-			if (whitespaces && limit > 0) {
-				textLength = text.replace(/\s/g, '').length;
+			let text = element.val(),
+				textLength = (whitespaces ? text.replace(/\s/g, '').length : text.length),
 				htmlResult = `<span>${textLength}/${limit}</span>`;
+			if (whitespaces && limit > 0) {
 				if (textLength > limit) {
 					let position = limit;
 					let subStrText = text.substr(0, position)
@@ -30,11 +29,8 @@
 					htmlResult = `<span>${limit}/${limit}</span>`;
 				}
 			} else if (whitespaces) {
-				textLength = text.replace(/\s/g, '').length;
 				htmlResult = `<span>${textLength}</span>`;
-
 			} else if (limit > 0) {
-				htmlResult = `<span>${textLength}/${limit}</span>`;
 				if (textLength > limit) {
 					element.val(text.substr(0, limit));
 					htmlResult = `<span>${limit}/${limit}</span>`;
