@@ -1,6 +1,6 @@
 {
   "name": "jquery-characters-calculator",
-  "version": "1.3.2",
+  "version": "1.3.3",
   "description": "characters calculator",
   "main": "index.js",
   "scripts": {
