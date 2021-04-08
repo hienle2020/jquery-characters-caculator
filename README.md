@@ -19,7 +19,6 @@ npm install jquery-characters-caculator
 </form>
 <form class="form2" action="">
     <h3>Limit true, whitespaces false</h3>
-
     <textarea id="textarea1" rows="10" width="100%"></textarea>
     <span id='target1' class="count"></span>
 </form>
@@ -40,19 +39,25 @@ npm install jquery-characters-caculator
 ###
 **Javascript file**
 ```js
- $(document).ready(function () {
-     $('#textarea2').calculate('#target2');
-    //defaultf is no limit and count spaces as character
-   $('#textarea').calculate('#target',{limit: 500});
-     //limit:  maximum number of characters 500
-    var element1 = $('#textarea1');
-    element1.calculate('#target1',{limit: 500,whitespaces: false});
-     //whitespaces: false --> Not count spaces as character
-    var element3 = $('#textarea3');
-    element3.calculate('#target3',{whitespaces: true});
-     //defaultf is no limit and count spaces as character
+        $(document).ready(function () {
+            var element = $('#textarea');
+            element.calculate(function (length, limit) {
+                (limit > 0 ? $('#target').html(`<span>${length}</span>/${limit}`) : $('#target').html(`${length}`));
+            });
+                // #target is a DOM will show results
+             //defaultf is no limit and count spaces as character
+            var element1 = $('#textarea1');
+            element1.calculate(function (length, limit) {
+                (limit > 0 ? $('#target1').html(`<span>${length}</span>/${limit}`) : $('#target1').html(`${length}`));
+            }, { whitespaces: true, limit: 300 });
+            //limit:  maximum number of characters 300 and count spaces as character
+            var element2 = $('#textarea2');
+            element2.calculate(function (length, limit) {
+                (limit > 0 ? $('#target2').html(`<span>${length}</span>/${limit}`) : $('#target2').html(`${length}`));
+            }, { whitespaces: false, limit: 500 });
+            //whitespaces: false --> Not count spaces as character
+        });
 
-  });
 
 ```
 
@@ -61,4 +66,5 @@ A plugin to show the number while typing or paste.
 <ul>
   <li>Count spaces as character or not</li>
   <li>Limit character</li>
+  <li>Used the callback function</li>
  </ul>
